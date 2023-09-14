@@ -1,7 +1,6 @@
 import os
 import time
 import matplotlib.pyplot as plt
-os.environ["CUDA_VISIBLE_DEVICES"] = '2'
 import numpy as np
 import torch
 from skimage.measure import ransac

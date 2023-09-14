@@ -128,18 +128,3 @@ if __name__ == '__main__':
         #     pickle.dump(lc_gt, f)
         print('Sequence %02d done,%05d files, %05d files with loop, %05d[%.4f] files only has reverse loop, %05d loop pairs, %05d[%.4f] reverse loop' %
               (int(sequence), len(dataset), len(loop_files), num_reverse_file, num_reverse_file / len(loop_files), len(loop_pairs),num_reverse_pairs,num_reverse_pairs/len(loop_pairs)))
-# Sequence 00 done,04541 files, 01682 files with loop, 00023[0.0137] files only has reverse loop, 10499 loop pairs, 00105[0.0100] reverse loop
-# Sequence 05 done,02761 files, 01046 files with loop, 00002[0.0019] files only has reverse loop, 06534 loop pairs, 00027[0.0041] reverse loop
-# Sequence 06 done,01101 files, 00563 files with loop, 00000[0.0000] files only has reverse loop, 02138 loop pairs, 00000[0.0000] reverse loop
-# Sequence 07 done,01101 files, 00183 files with loop, 00000[0.0000] files only has reverse loop, 02497 loop pairs, 00000[0.0000] reverse loop
-# Sequence 08 done,04071 files, 00654 files with loop, 00613[0.9373] files only has reverse loop, 02960 loop pairs, 02825[0.9544] reverse loop
-# Sequence 09 done,01591 files, 00048 files with loop, 00000[0.0000] files only has reverse loop, 00252 loop pairs, 00000[0.0000] reverse loop
-# Sequence 50 done,10514 files, 04798 files with loop, 03124[0.6511] files only has reverse loop, 24499 loop pairs, 17097[0.6979] reverse loop
-# Sequence 54 done,11052 files, 04494 files with loop, 03961[0.8814] files only has reverse loop, 21165 loop pairs, 17991[0.8500] reverse loop
-# Sequence 55 done,06291 files, 04285 files with loop, 03712[0.8663] files only has reverse loop, 20361 loop pairs, 17360[0.8526] reverse loop
-# Sequence 56 done,09186 files, 04967 files with loop, 02996[0.6032] files only has reverse loop, 22822 loop pairs, 13859[0.6073] reverse loop
-# Sequence 59 done,13247 files, 08489 files with loop, 02972[0.3501] files only has reverse loop, 53858 loop pairs, 19110[0.3548] reverse loop
-
-
-# Sequence 120205 done,03078 files, 01187 files with loop, 00733[0.6175] files only has reverse loop, 02530 loop pairs, 01761[0.6962] reverse loop
-# Sequence 130405 done,02091 files, 00500 files with loop, 00382[0.7640] files only has reverse loop, 00903 loop pairs, 00681[0.7547] reverse loop

@@ -1,18 +1,19 @@
 import math
 import os
-# os.environ["CUDA_VISIBLE_DEVICES"] = '5'
-
 import time
-import torch
+import warnings
+
 import numpy as np
-from tqdm import tqdm
+import torch
 import yaml
+from skimage.measure import ransac
+from skimage.transform import EuclideanTransform
+from tqdm import tqdm
+
 import net
 import tools
 from dataset import KittiTotalLoader
-from skimage.measure import ransac
-from skimage.transform import SimilarityTransform,EuclideanTransform
-import warnings
+
 warnings.filterwarnings("ignore")
 
 

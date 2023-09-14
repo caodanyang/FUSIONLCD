@@ -173,34 +173,3 @@ class UOTHead(nn.Module):
         batch_dict['transformation_'+self.name] = transformation
 
         return batch_dict
-
-
-class GenUOTHead(nn.Module):
-
-    def __init__(self, nb_iter=5,name='pt_dual'):
-        super().__init__()
-        self.epsilon = torch.nn.Parameter(torch.zeros(1))  # Entropic regularisation
-        self.gamma = torch.nn.Parameter(torch.zeros(1))  # Mass regularisation
-        self.nb_iter = nb_iter
-        self.name=name
-
-    def forward(self, batch_dict):
-
-        feat1 = batch_dict['fea_%s'% self.name]#.detach()
-        feat2 = batch_dict['fea_%s_gen'% self.name]
-
-        correspondences_feature = sinkhorn_unbalanced(
-            feat1.permute(0, 2, 1),
-            feat1.permute(0, 2, 1),
-            epsilon=torch.exp(self.epsilon) + 0.03,
-            gamma=torch.exp(self.gamma),
-            max_iter=self.nb_iter,
-            matrix='cosine',
-        )
-
-        feature_corr_sum = correspondences_feature.sum(-1, keepdim=True)
-        project_feas = (correspondences_feature @ feat2.permute(0, 2, 1)) / (feature_corr_sum + 1e-8)
-        loss=((feat1-project_feas.permute(0, 2, 1)).norm(p=2,dim=1)/feat1.norm(p=2,dim=1)).mean()
-        batch_dict['loss_'+self.name] = loss
-
-        return batch_dict

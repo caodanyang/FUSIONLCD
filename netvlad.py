@@ -11,7 +11,6 @@ class NetVLAD(nn.Module):
         self.conv = nn.Conv2d(fea_size, num_clusters, kernel_size=(1, 1), bias=True)
         self.centroids = nn.Parameter(torch.randn(num_clusters, fea_size))
         self.relu = nn.ReLU(inplace=True)
-        # self.linear=nn.Linear(fea_size*num_clusters,256)
 
     def forward(self, x):
         """
@@ -36,12 +35,9 @@ class NetVLAD(nn.Module):
         # sum residuals and assign
         vlad = residual.sum(dim=-2)  # (B, num_clusters, C)
         vlad = nn.functional.normalize(vlad, p=2, dim=2)  # (B, num_clusters, C)
-        # vlad = vlad.view(B, -1)  # (B, num_clusters * C)
-        # vlad = torch.max(vlad,dim=1)[0]
-        # vlad=F.max_pool1d(vlad,kernel_size=2)
+
         vlad = vlad.view(B, -1)
         vlad = nn.functional.normalize(vlad, p=2, dim=1)  # (B, num_clusters * C)
-        # vlad=self.linear(vlad)
         return vlad
 
 

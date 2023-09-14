@@ -6,7 +6,7 @@ import torch
 import torch._utils
 import torch.nn as nn
 import torch.nn.functional as F
-from uot import UOTHead,GenUOTHead
+from uot import UOTHead
 from netvlad import NetVLAD, NetVLADLoupe
 from ALIKE.alike import configs
 from ALIKE.alnet import ALNet

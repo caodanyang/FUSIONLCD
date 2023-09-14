@@ -1,8 +1,7 @@
 import argparse
 import os
-# os.environ["CUDA_VISIBLE_DEVICES"]='4'
 import time
-import setproctitle
+
 import numpy as np
 import torch
 import torch.optim as optim
@@ -11,11 +10,10 @@ import yaml
 import net
 import tools
 from dataset import KittiTotalLoader
-from loss import TotalLoss
 from evaluate_lcd import lcd
-from evaluate_fm import feature_match
+from loss import TotalLoss
 
-test_step = 1
+test_step = 10
 
 def save_checkpoint(model, optimizer, loss_total_fun, epoch, iter_train, path_result):
     if (epoch + 1) % test_step == 0 and epoch+1>=test_step:
@@ -414,7 +412,6 @@ if __name__ == '__main__':
     parser.add_argument('--pro_name', type=str,default='python',help='name of process')
     parser.add_argument('--info', type=str,default='python',help='name of process')
     args = parser.parse_args()
-    # setproctitle.setproctitle(args.pro_name)
     print(args.info)
     try:
         print("Using GPU device:", os.environ["CUDA_VISIBLE_DEVICES"])
