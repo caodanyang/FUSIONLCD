@@ -1,0 +1,56 @@
+'experiment' :
+
+  # 'path_dataset' : '/mnt/data/cdy/project/dataset/FUSION'
+  # 'path_result': '/mnt/data/cdy/data2/results/FUSIONLCD'
+
+  # 'path_dataset' : 'E:\work\Project\dataset\FUSION'
+  # 'path_result' : 'E:\work\Project\results\FUSIONLCD\bev2'
+  
+  'path_dataset' : '/data2/caodanyang/project/dataset/FUSION'
+  'path_result': '/data4/caodanyang/results/FUSIONLCD'
+  'train_flag' : 0
+  'validate_flag' : 0
+  'test_flag' : 1
+  'flag' : 'bev' 
+  'cuda' : 1
+  # TRAINING
+  'epochs' : 200
+  'batchsize' : 6
+  'learning_rate' : 1.e-3
+  'beta1' : 0.9
+  'beta2' : 0.999
+  'eps' : 1.e-8
+  'weight_decay' : 5.e-6
+  'load_model' : 1
+  #FUSION
+  # 'last_model' : '/data4/caodanyang/results/FUSIONLCD/08310/models/checkpoint_079.pth.tar'
+  #BEV
+  # 'last_model' : '/data4/caodanyang/results/FUSIONLCD/bev_09030/models/checkpoint_066.pth.tar'
+  #BEV+EP
+  'last_model' : '/data4/caodanyang/results/FUSIONLCD/bev_09021/models/checkpoint_024.pth.tar'
+  #DATASET
+  'train' : 0,5,6,7,9
+  'validate' : 8,50,54,55,56,59
+  'test' : 8,50,54,55,56,59
+  'voxel_num' : 15000
+  'voxel_max_points' : 100
+  'voxel_sample' : 'top'
+#  'bev_range' : -51.2,-51.2,-2.5,51.2,51.2,1.5
+#  'bev_resolution' : 0.16
+#  'bev_range' : -64,-64,-2.5,64,64,1.5
+#  'bev_resolution' : 0.2
+  'bev_range' : -32,-32,-2.5,32,32,1.5
+  'bev_resolution' : 0.2
+
+  # NETWORK PARAMS
+  'kpts_number_bev' : 150
+  'kpts_number_img' : 0
+  'cluster_num_bev' : 16
+  'cluster_num_img' : 0
+  'cluster_num_fusion' : 16
+  'sinkhorn_iter' : 5
+  'vlad_size' : 256
+  # LOSS
+  'loop_file' :  'loop_GT_4m'
+  'trip_margin' : 0.5
+  'negetative_selsector' : 'random'
