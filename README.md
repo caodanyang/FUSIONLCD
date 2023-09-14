@@ -25,6 +25,9 @@ To run the code, follow these steps:
 
 2. If you want to load a trained model used in the paper, ensure that you update the file path accordingly.
 
+3. Run `python train.py`
+
+
 ## Evaluation
 Evaluate the saved data using the evaluation script.
 
