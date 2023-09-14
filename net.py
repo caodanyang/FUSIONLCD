@@ -10,7 +10,7 @@ from uot import UOTHead
 from netvlad import NetVLAD, NetVLADLoupe
 from ALIKE.alike import configs
 from ALIKE.alnet import ALNet
-from BEVNet import RICNN, RECNN, EncodePosition, RIAvgpool2d, RIMaxpool2d
+from BEVNet import RICNN, EncodePosition, RIAvgpool2d, RIMaxpool2d
 import tools
 
 
