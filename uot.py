@@ -138,31 +138,6 @@ class UOTHead(nn.Module):
         project_kpts = (correspondences_feature @ coords2) / (feature_corr_sum + 1e-8)
         project_feas = (correspondences_feature @ feat2.permute(0, 2, 1)) / (feature_corr_sum + 1e-8)
 
-        # mask=torch.all(feats==0,dim=1,keepdim=False)
-        # number=mask.shape[1]-torch.sum(mask,dim=1)
-        # number1=number[:B]
-        # number2=number[B:]
-        # project_kpts1=torch.zeros_like(coords1,device=coords1.device)
-        # project_feas1=torch.zeros_like(feat1,device=feat1.device).permute(0,2,1)
-        # feature_corr_sum1=torch.zeros((B,mask.shape[1],1),device=feat1.device,dtype=torch.float32)
-        # for i in range(B):
-        #     correspondences_feature = sinkhorn_unbalanced(
-        #         feat1.permute(0, 2, 1)[i:i+1,0:number1[i]],
-        #         feat2.permute(0, 2, 1)[i:i+1,0:number2[i]],
-        #         epsilon=torch.exp(self.epsilon) + 0.03,
-        #         gamma=torch.exp(self.gamma),
-        #         max_iter=self.nb_iter,
-        #         matrix='cosine',
-        #     )
-        #     feature_corr_sum = correspondences_feature.sum(-1, keepdim=True)
-        #     project_kpts = (correspondences_feature @ coords2[i:i+1,0:number2[i]]) / (feature_corr_sum + 1e-8)
-        #     project_feas = (correspondences_feature @ feat2.permute(0, 2, 1)[i:i+1,0:number2[i]]) / (feature_corr_sum + 1e-8)
-        #     feature_corr_sum1[i:i+1,0:number1[i]]=feature_corr_sum
-        #     project_kpts1[i:i+1,0:number1[i]]=project_kpts
-        #     project_feas1[i:i+1,0:number1[i]]=project_feas
-        #     # coord_corr_sum = correspondences_coord.sum(-1, keepdim=True)
-        #     # project_coord_kpts = (correspondences_coord @ coords2) / (coord_corr_sum + 1e-8)
-
         batch_dict['project_kpts_'+self.name] = project_kpts
         batch_dict['project_feas_'+self.name] = project_feas.permute(0, 2, 1)
         # batch_dict['project_coord_kpts'] = project_coord_kpts

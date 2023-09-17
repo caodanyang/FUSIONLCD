@@ -104,44 +104,6 @@ class RIAvgpool2d(nn.Module):
         return f"RIAvgpool2d(kernel_size={self.weight.shape[0]}, stride={self.stride}, padding={self.padding})"
 
 
-class MFConv(nn.Module):
-    def __init__(self, in_channel, out_channel, kernel_size=1, stride=1, padding=0, bias=True):
-        super().__init__()
-        self.conv1 = nn.Conv2d(in_channels=in_channel, out_channels=out_channel, kernel_size=kernel_size, stride=stride, padding=padding, bias=bias)
-        self.conv2 = nn.Conv2d(in_channels=in_channel, out_channels=out_channel, kernel_size=kernel_size + 2, stride=stride, padding=padding + 1, bias=bias)
-        self.conv3 = nn.Conv2d(in_channels=in_channel, out_channels=out_channel, kernel_size=kernel_size + 4, stride=stride, padding=padding + 2, bias=bias)
-        self.dp = nn.Dropout(0.3)
-
-    def forward(self, x):
-        x1 = self.conv1(x)
-        x2 = self.conv2(x)
-        x3 = self.conv3(x)
-        x4 = self.dp(x1) + self.dp(x2) + self.dp(x3)
-        return x4
-
-
-class MFConvBlock(nn.Module):
-    def __init__(self, in_channels, out_channels,
-                 gate: Optional[Callable[..., nn.Module]] = None,
-                 norm_layer: Optional[Callable[..., nn.Module]] = None):
-        super().__init__()
-        if gate is None:
-            self.gate = nn.ReLU(inplace=True)
-        else:
-            self.gate = gate
-        if norm_layer is None:
-            norm_layer = nn.BatchNorm2d
-        self.conv1 = MFConv(in_channel=in_channels, out_channel=out_channels, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn1 = norm_layer(out_channels)
-        self.conv2 = MFConv(in_channel=out_channels, out_channel=out_channels, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn2 = norm_layer(out_channels)
-
-    def forward(self, x):
-        x = self.gate(self.bn1(self.conv1(x)))  # B x in_channels x H x W
-        x = self.gate(self.bn2(self.conv2(x)))  # B x out_channels x H x W
-        return x
-
-
 class RIConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels,
                  gate: Optional[Callable[..., nn.Module]] = None,
