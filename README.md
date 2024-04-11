@@ -1,10 +1,15 @@
 # FUSION
 
 ## Table of Contents
+- [Paper](#paper)
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
 - [Running the Code](#running-the-code)
 - [Evaluation](#evaluation)
+## Paper
+If you find the poject helps you, you can cite our paper:
+Cao D, Yue H, Liu Z, et al. BEVLCD+: Real-Time and Rotation-Invariant Loop Closure Detection Based on BEV of Point Cloud[J]. IEEE Transactions on Instrumentation and Measurement, 2023.
+Yue H, Cao D, Liu Z, et al. Cross Fusion of Point Cloud and Learned Image for Loop Closure Detection[J]. IEEE Robotics and Automation Letters, 2024.
 
 ## Overview
 We provide code for BEV mode and fusion mode, so you can easily train and test.
